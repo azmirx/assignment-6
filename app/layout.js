@@ -1,6 +1,7 @@
 import { Inter, Oswald } from "next/font/google";
 import "./globals.css";
 import Providers from "./providers";
+import Footer from "@/components/Footer";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -21,7 +22,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${inter.variable} ${oswald.variable}`}>
-        <Providers>{children}</Providers>
+        <Providers>
+          {children}
+          <Footer />
+        </Providers>
       </body>
     </html>
   );
