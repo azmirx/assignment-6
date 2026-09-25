@@ -5,7 +5,22 @@ import toast from "react-hot-toast";
 import { useWorkout } from "@/context/WorkoutContext";
 
 export default function WorkoutActions({ workout }) {
-  const { addToPlan, saveForLater } = useWorkout();
+  const {
+    plan,
+    saved,
+    addToPlan,
+    saveForLater,
+  } = useWorkout();
+
+  const alreadyInPlan = plan.some(
+    (item) => String(item.id) === String(workout.id)
+  );
+
+  const alreadySaved = saved.some(
+    (item) => String(item.id) === String(workout.id)
+  );
+
+  const planIsFull = plan.length >= 5;
 
   function handleAddToPlan() {
     const result = addToPlan(workout);
@@ -37,20 +52,40 @@ export default function WorkoutActions({ workout }) {
 
   return (
     <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+      {/* Add to Plan */}
       <button
+        type="button"
         onClick={handleAddToPlan}
-        className="inline-flex items-center justify-center gap-2 bg-[#ccff00] px-6 py-4 text-sm font-black uppercase text-black transition hover:bg-[#b8e600]"
+        disabled={planIsFull || alreadyInPlan}
+        className={`inline-flex items-center justify-center gap-2 px-6 py-4 text-sm font-black uppercase transition ${
+          planIsFull || alreadyInPlan
+            ? "cursor-not-allowed bg-white/10 text-white/30"
+            : "bg-[#ccff00] text-black hover:bg-[#b8e600]"
+        }`}
       >
         <Plus size={18} />
-        ADD TO TODAY&apos;S PLAN
+
+        {alreadyInPlan
+          ? "ALREADY IN PLAN"
+          : planIsFull
+            ? "PLAN IS FULL"
+            : "ADD TO TODAY'S PLAN"}
       </button>
 
+      {/* Save */}
       <button
+        type="button"
         onClick={handleSaveForLater}
-        className="inline-flex items-center justify-center gap-2 border border-white/25 px-6 py-4 text-sm font-black uppercase text-white transition hover:border-[#ccff00] hover:text-[#ccff00]"
+        disabled={alreadySaved}
+        className={`inline-flex items-center justify-center gap-2 border px-6 py-4 text-sm font-black uppercase transition ${
+          alreadySaved
+            ? "cursor-not-allowed border-white/10 text-white/30"
+            : "border-white/25 text-white hover:border-[#ccff00] hover:text-[#ccff00]"
+        }`}
       >
         <Bookmark size={18} />
-        SAVE FOR LATER
+
+        {alreadySaved ? "SAVED" : "SAVE FOR LATER"}
       </button>
     </div>
   );
