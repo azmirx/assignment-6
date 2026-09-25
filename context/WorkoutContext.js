@@ -16,18 +16,26 @@ export function WorkoutProvider({ children }) {
 
   // Load data from localStorage
   useEffect(() => {
-    const storedPlan = localStorage.getItem("fitlog-plan");
-    const storedSaved = localStorage.getItem("fitlog-saved");
+    const timer = setTimeout(() => {
+      try {
+        const storedPlan = localStorage.getItem("fitlog-plan");
+        const storedSaved = localStorage.getItem("fitlog-saved");
 
-    if (storedPlan) {
-      setPlan(JSON.parse(storedPlan));
-    }
+        if (storedPlan) {
+          setPlan(JSON.parse(storedPlan));
+        }
 
-    if (storedSaved) {
-      setSaved(JSON.parse(storedSaved));
-    }
+        if (storedSaved) {
+          setSaved(JSON.parse(storedSaved));
+        }
+      } catch (error) {
+        console.error("Failed to load FitLog data:", error);
+      }
 
-    setLoaded(true);
+      setLoaded(true);
+    }, 0);
+
+    return () => clearTimeout(timer);
   }, []);
 
   // Save Today's Plan
@@ -93,7 +101,7 @@ export function WorkoutProvider({ children }) {
     return "saved";
   }
 
-  // Remove from plan
+  // Remove from Today's Plan
   function removeFromPlan(id) {
     setPlan((current) =>
       current.filter(
@@ -102,7 +110,7 @@ export function WorkoutProvider({ children }) {
     );
   }
 
-  // Remove from saved
+  // Remove from Saved
   function removeFromSaved(id) {
     setSaved((current) =>
       current.filter(

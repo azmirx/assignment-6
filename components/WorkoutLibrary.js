@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useMemo, useState } from "react";
 import Link from "next/link";
 import {
@@ -153,11 +154,13 @@ export default function WorkoutLibrary({ workouts }) {
               >
                 {/* Workout Image */}
                 <div className="flex h-[260px] items-center justify-center overflow-hidden bg-[#171a20] p-5">
-                  <img
-                    src={workout.image}
-                    alt={workout.name}
-                    className="h-full w-full object-contain transition duration-300 group-hover:scale-105"
-                  />
+                  <Image
+  src={workout.image}
+  alt={workout.name}
+  width={740}
+  height={740}
+  className="h-full w-full object-contain transition duration-300 group-hover:scale-105"
+/>
                 </div>
 
                 {/* Card Content */}

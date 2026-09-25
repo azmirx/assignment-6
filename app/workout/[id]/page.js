@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import {
@@ -52,11 +53,13 @@ export default async function WorkoutDetails({ params }) {
         <div className="grid gap-10 lg:grid-cols-2">
           {/* Left Image */}
           <div className="flex min-h-[520px] items-center justify-center border border-white/10 bg-[#171a20] p-8">
-            <img
-              src={workout.image}
-              alt={workout.name}
-              className="max-h-[500px] w-full object-contain"
-            />
+            <Image
+  src={workout.image}
+  alt={workout.name}
+  width={740}
+  height={740}
+  className="max-h-[500px] w-full object-contain"
+/>
           </div>
 
           {/* Right Content */}
