@@ -4,8 +4,8 @@ FitLog is a dark-themed workout library built with Next.js. Users can browse wor
 
 ## 🔗 Live Links
 
-- Live Site: Add deployment link here
-- GitHub Repository: Add GitHub repository link here
+- Live Site: https://assignment-6-azmir1.vercel.app
+- GitHub Repository: https://github.com/azmirx/assignment-6
 
 ## 🚀 Technologies Used
 
