@@ -92,3 +92,49 @@ https://api.abcz.workers.dev/api/fitlog
 Single workout:
 
 https://api.abcz.workers.dev/api/fitlog/:id
+
+
+---
+
+## 📦 Dependencies
+
+This project uses the following main dependencies:
+
+- Next.js
+- React
+- React DOM
+- Lucide React
+- React Hot Toast
+- Tailwind CSS
+
+---
+
+## ⚙️ Run Locally
+
+Follow these steps to run the project on your local machine:
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/azmirx/assignment-6.git
+```
+
+2. Go to the project directory:
+
+```bash
+cd assignment-6
+```
+
+3. Install dependencies:
+
+```bash
+npm install
+```
+
+4. Start the development server:
+
+```bash
+npm run dev
+```
+
+5. Open the local development URL shown in your terminal.
